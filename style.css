@@ -1,0 +1,14 @@
+.hidden {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button.correct {
+  background-color: #34d63c;
+}
+button.wrong {
+  background-color: #af1919;
+}
