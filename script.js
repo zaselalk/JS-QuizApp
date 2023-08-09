@@ -26,10 +26,15 @@ const scorePannel = document.getElementById("score-panel");
 const quizPannel = document.getElementById("quiz-panel");
 const answerPannel = document.getElementById("anwser-panel");
 const answerBtns = document.getElementsByClassName("answer-btn");
-const score = document.getElementById("score");
+const score = document.getElementById("score-precentage");
+const scoreDiv = document.getElementById("score-devide");
 const startBtn = document.getElementById("start");
 const startPannel = document.getElementById("start-panel");
 const restartBtn = document.getElementById("restart");
+const quizAppTitle = document.getElementById("quiz-app--title");
+const quizNo = document.getElementById("quiz-no");
+const feedback = document.getElementById("quiz-feedback");
+const feedbackSection = document.getElementById("feedback-section");
 
 //Event Listners
 nextBtn.addEventListener("click", nextQuiz);
@@ -56,6 +61,7 @@ function disableAllButtons() {
 function startQuiz() {
   quizPannel.classList.remove("hidden");
   startPannel.classList.add("hidden");
+  quizAppTitle.classList.add("hidden");
   curr_quiz = 0;
   correct_ans = 0;
   nextQuiz();
@@ -64,6 +70,7 @@ function startQuiz() {
 function nextQuiz() {
   clearPrev();
   if (quizes.length <= curr_quiz) {
+    nextBtn.classList.add("hidden");
     showScore();
     curr_quiz = 0;
     return false;
@@ -71,14 +78,22 @@ function nextQuiz() {
   nextBtn.classList.add("hidden");
   showQuestion();
   curr_quiz++;
+  quizNo.innerText = `Q.0${curr_quiz}`;
 }
 
 function showScore() {
   quizPannel.classList.add("hidden");
   scorePannel.classList.remove("hidden");
+  feedbackSection.classList.add("hidden");
 
-  score.innerText = `Your score ${correct_ans} / ${quizes.length}`;
+  confetti({
+    particleCount: 100,
+    spread: 70,
+    origin: { y: 0.4 },
+  });
 
+  score.innerText = ` ${Math.round((correct_ans / quizes.length) * 100)}%`;
+  scoreDiv.innerText = `${correct_ans}/${quizes.length} Score`;
   clearFunctions.push(() => {
     quizPannel.classList.remove("hidden");
     scorePannel.classList.add("hidden");
@@ -110,23 +125,32 @@ function submitAnswer(event) {
   disableAllButtons();
 
   nextBtn.classList.remove("hidden");
+  feedbackSection.classList.remove("hidden");
 
   if (answer === correctAnswer) {
     answerBtns[correctAnswer].classList.add("correct");
+    feedback.innerText = "Correct Answer";
+    feedback.classList.add("correct-ans");
 
     correct_ans++;
 
     clearFunctions.push(() => {
       answerBtns[correctAnswer].classList.remove("correct");
+      feedback.innerText = "";
+      feedback.classList.remove("correct-ans");
     });
     return;
   }
 
   answerBtns[correctAnswer].classList.add("correct");
   answerBtns[answer].classList.add("wrong");
+  feedback.innerText = "Wrong Answer";
+  feedback.classList.add("wrong-ans");
 
   clearFunctions.push(() => {
     answerBtns[correctAnswer].classList.remove("correct");
     answerBtns[answer].classList.remove("wrong");
+    feedback.innerText = "";
+    feedback.classList.remove("Wrong-ans");
   });
 }

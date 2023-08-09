@@ -7,28 +7,49 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="start-panel">
-      <h3>Start the Quiz</h3>
-      <button id="start">Start The Quiz</button>
-    </div>
-    <div id="quiz-panel" class="hidden">
-      <h1 id="quiz-title">Quiz title</h1>
-      <div id="anwser-panel">
-        <button class="answer-btn">Answer1</button>
-        <button class="answer-btn">Answer2</button>
-        <button class="answer-btn">Answer3</button>
-        <button class="answer-btn">Answer4</button>
+    <div class="quiz-app">
+      <h1 class="quiz-app--title" id="quiz-app--title">QUIZ APP</h1>
+
+      <!-- Start Panel -->
+      <div id="start-panel" class="start-panel">
+        <img src="./img/Mobile_cover.png" alt="" srcset="" />
+        <div class="start-panel--action">
+          <p>
+            Welcome to the Quiz App. This is a practical way to check your
+            knowledge
+          </p>
+          <button id="start">Start The Quiz</button>
+        </div>
       </div>
-      <button id="btn-next">Next</button>
-    </div>
 
-    <div class="hidden" id="score-panel">
-      <h3>Gamer Over</h3>
-      <h4 id="score"></h4>
-      <p>Thank you for participate</p>
-      <button id="restart">Try Again</button>
-    </div>
+      <!-- Quiz Panel -->
+      <div id="quiz-panel" class="hidden quiz-panel">
+        <h3 id="quiz-no"></h3>
+        <h1 id="quiz-title">Quiz title</h1>
+        <div id="anwser-panel" class="anwser-panel">
+          <button class="btn answer-btn">Answer1</button>
+          <button class="btn answer-btn">Answer2</button>
+          <button class="btn answer-btn">Answer3</button>
+          <button class="btn answer-btn">Answer4</button>
+        </div>
+      </div>
 
+      <!-- Score panel -->
+      <div id="score-panel" class="score-panel hidden">
+        <div class="circle"></div>
+
+        <h4 id="score-precentage"></h4>
+        <h5 id="score-devide"></h5>
+        <img src="./img/Group 10.png" alt="" srcset="" />
+        <button id="restart" class="btn score-panel--btn">Restart Quiz</button>
+      </div>
+
+      <div class="feedback-section hidden" id="feedback-section">
+        <h3 id="quiz-feedback"></h3>
+        <button id="btn-next" class="hidden btn">Next</button>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js"></script>
     <script src="./script.js"></script>
   </body>
 </html>
