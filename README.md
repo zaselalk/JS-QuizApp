@@ -31,7 +31,7 @@ To run this quiz app locally, follow these steps:
 1. Clone this repository to your local machine:
    
 ```
-git clone https://github.com/your-username/quiz-app.git
+git clone https://github.com/zaselalk/JS-QuizApp.git
 ```
 
 2. Open the `index.html` file in a web browser.
